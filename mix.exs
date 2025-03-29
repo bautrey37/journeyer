@@ -59,7 +59,11 @@ defmodule Journeyer.MixProject do
       {:dns_cluster, "~> 0.1.1"},
       {:bandit, "~> 1.5"},
       {:sentry, "~> 10.2.0"},
-      {:hackney, "~> 1.23"}
+      {:hackney, "~> 1.23"},
+
+      ### Dev Tools
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
     ]
   end
 
@@ -75,6 +79,7 @@ defmodule Journeyer.MixProject do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
+      lint: ["deps.unlock --check-unused", "compile", "credo", "dialyzer --format=dialyxir"],
       "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
       "assets.build": ["tailwind journeyer", "esbuild journeyer"],
       "assets.deploy": [
