@@ -16,5 +16,12 @@ config :swoosh, local: false
 # Do not print debug messages in production
 config :logger, level: :info
 
+config :sentry,
+  dsn:
+    "https://9d7854eb43e5ab94a67b27fade409eb6@o4509061591334912.ingest.us.sentry.io/4509061591728128",
+  environment_name: Mix.env(),
+  enable_source_code_context: true,
+  root_source_code_paths: [File.cwd!()]
+
 # Runtime production configuration, including reading
 # of environment variables, is done on config/runtime.exs.
