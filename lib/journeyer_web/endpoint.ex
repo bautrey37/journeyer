@@ -1,4 +1,5 @@
 defmodule JourneyerWeb.Endpoint do
+  use Sentry.PlugCapture
   use Phoenix.Endpoint, otp_app: :journeyer
 
   # The session will be stored in the cookie and signed,
@@ -49,5 +50,6 @@ defmodule JourneyerWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
+  plug Sentry.PlugContext
   plug JourneyerWeb.Router
 end
