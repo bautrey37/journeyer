@@ -16,8 +16,6 @@ defmodule Journeyer.Application do
       Journeyer.Repo,
       {DNSCluster, query: Application.get_env(:journeyer, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: Journeyer.PubSub},
-      # Start the Finch HTTP client for sending emails
-      {Finch, name: Journeyer.Finch},
       # Start a worker by calling: Journeyer.Worker.start_link(arg)
       # {Journeyer.Worker, arg},
       # Start to serve requests, typically the last entry
