@@ -17,7 +17,7 @@ config :journeyer, Journeyer.Repo,
 # you can enable the server option below.
 config :journeyer, JourneyerWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
-  secret_key_base: "ZwHYfV9+SVYt5gU9OG1VpdBvTbR0Nzb9iogucOn0ls+vqJx1GtTEFOo1BjTDBhEU",
+  secret_key_base: "mCKcBaoakIrr9H0PLyTUVVMmwBoTT7MlF82QbLYXz0kfqpJm4RBMweoAquozVJrm",
   server: false
 
 # In test we don't send emails

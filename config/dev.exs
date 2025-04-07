@@ -19,11 +19,11 @@ config :journeyer, Journeyer.Repo,
 config :journeyer, JourneyerWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
-  http: [ip: {127, 0, 0, 1}, port: 4000],
+  http: [ip: {127, 0, 0, 1}, port: String.to_integer(System.get_env("PORT") || "4000")],
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "SIJ2HQaRnlLr8XPTSaqsxQoyBtgYqm8ODHiIj/wtS/ImH02UJStVBB8Deu1RB2V0",
+  secret_key_base: "4QvdqnxJgCcQe9qk1U8VfS1DV4EQCZwtIbD6w7u579bSUhYD2HFwjgtj+MhYYzBU",
   watchers: [
     esbuild: {Esbuild, :install_and_run, [:journeyer, ~w(--sourcemap=inline --watch)]},
     tailwind: {Tailwind, :install_and_run, [:journeyer, ~w(--watch)]}
@@ -55,6 +55,7 @@ config :journeyer, JourneyerWeb.Endpoint,
 # Watch static and templates for browser reloading.
 config :journeyer, JourneyerWeb.Endpoint,
   live_reload: [
+    web_console_logger: true,
     patterns: [
       ~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
@@ -66,7 +67,7 @@ config :journeyer, JourneyerWeb.Endpoint,
 config :journeyer, dev_routes: true
 
 # Do not include metadata nor timestamps in development logs
-config :logger, :console, format: "[$level] $message\n"
+config :logger, :default_formatter, format: "[$level] $message\n"
 
 # Set a higher stacktrace during development. Avoid configuring such
 # in production as building large stacktraces may be expensive.
@@ -76,7 +77,8 @@ config :phoenix, :stacktrace_depth, 20
 config :phoenix, :plug_init_mode, :runtime
 
 config :phoenix_live_view,
-  # Include HEEx debug annotations as HTML comments in rendered markup
+  # Include HEEx debug annotations as HTML comments in rendered markup.
+  # Changing this configuration will require mix clean and a full recompile.
   debug_heex_annotations: true,
   # Enable helpful, but potentially expensive runtime checks
   enable_expensive_runtime_checks: true

@@ -38,9 +38,7 @@ defmodule JourneyerWeb do
 
   def controller do
     quote do
-      use Phoenix.Controller,
-        formats: [:html, :json],
-        layouts: [html: JourneyerWeb.Layouts]
+      use Phoenix.Controller, formats: [:html, :json]
 
       use Gettext, backend: JourneyerWeb.Gettext
 
@@ -52,8 +50,7 @@ defmodule JourneyerWeb do
 
   def live_view do
     quote do
-      use Phoenix.LiveView,
-        layout: {JourneyerWeb.Layouts, :app}
+      use Phoenix.LiveView
 
       unquote(html_helpers())
     end
@@ -90,8 +87,9 @@ defmodule JourneyerWeb do
       # Core UI components
       import JourneyerWeb.CoreComponents
 
-      # Shortcut for generating JS commands
+      # Common modules used in templates
       alias Phoenix.LiveView.JS
+      alias JourneyerWeb.Layouts
 
       # Routes generation with the ~p sigil
       unquote(verified_routes())
